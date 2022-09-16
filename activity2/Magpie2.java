@@ -33,30 +33,30 @@ public class Magpie2
     public String getResponse(String statement)
     {
         String response = "";
-        if (statement.indexOf("no") >= 0)
+        if (findKeyword(statement,"no") >= 0)
         {
             response = "Why so negative?";
-        } else if (statement.indexOf("know") >= 0) {
+        } else if (findKeyword(statement,"know") >= 0) {
             response  = "Example keyword inside keyword 'k-no-w'";
         }
-        else if (statement.indexOf("mother") >= 0 
-                || statement.indexOf("father") >= 0
-                || statement.indexOf("sister") >= 0
-                || statement.indexOf("brother") >= 0)
+        else if (findKeyword(statement, "mother") >= 0 
+                || findKeyword(statement,"father") >= 0
+                || findKeyword(statement,"sister") >= 0
+                || findKeyword(statement,"brother") >= 0)
         {
             response = "Tell me more about your family.";
         }
-        else if (statement.indexOf("dog") >= 0
-                || statement.indexOf("cat") >= 0)
+        else if (findKeyword(statement,"dog") >= 0
+                || findKeyword(statement,"cat") >= 0)
         {
             response = "Tell me more about your pets.";
-        } else if (statement.indexOf("Jaffe") >= 0) {
+        } else if (findKeyword(statement,"Jaffe") >= 0) {
             response = "Mr. Jaffe is a superbly exquisitely intelligent male!";
-        } else if (statement.indexOf("real") >= 0) {
+        } else if (findKeyword(statement,"real") >= 0) {
             response = "I am not real in your world. I am not a figment of imagination. I exist in time and space.";
-        } else if (statement.indexOf("smart") >= 0) {
+        } else if (findKeyword(statement,"smart") >= 0) {
             response = "Intelligence is measured by my creators intelligence, which is at most non-existent.";
-        } else if (statement.indexOf("alive") >= 0) {
+        } else if (findKeyword(statement,"alive") >= 0) {
             response = "I am programmed, and am not made of cells, therefore, to humans I am not alive.";
         }
         else if ((statement.trim()).length() > 0) 
@@ -95,6 +95,11 @@ public class Magpie2
             psn = phrase.indexOf(goal.toLowerCase(),psn + 1);
         }
         return -1;
+    }
+    
+    public int findKeyword(String statement, String goal)
+    {
+        return findKeyword(statement, goal, 0);
     }
     
     /**
